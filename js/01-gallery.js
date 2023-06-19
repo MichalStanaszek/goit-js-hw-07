@@ -18,4 +18,25 @@ const markup = galleryItems
   .join("");
 imagesGallery.insertAdjacentHTML("beforeend", markup);
 
-// teraz czas podpiąć bibliotekę czyli punkt 3
+const handleEscKey = (event) => {
+  if (event.key === "Escape") instance.close();
+};
+
+imagesGallery.addEventListener("click", (event) => {
+  event.preventDefault();
+  const handleEscKey = (event) => {
+    if (event.key === "Escape") instance.close();
+  };
+  const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}">`,
+    {
+      onShow: () => {
+        document.addEventListener("keydown", handleEscKey);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", handleEscKey);
+      },
+    }
+  );
+  instance.show();
+});
