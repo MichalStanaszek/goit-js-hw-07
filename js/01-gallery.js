@@ -10,7 +10,6 @@ const markup = galleryItems
         src="${galleryItem.preview}"
         data-source="${galleryItem.original}"
         alt="${galleryItem.description}"
-
       />
     </a>
   </div>`
